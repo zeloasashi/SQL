@@ -18,13 +18,15 @@
 <body>
 
     <table>
+        <?php for ($i=1; $i < 16; $i++): ?>
             <tr>
                 <?php for($k=0; $k<16; $k++): 
-                    $c = sprintf("#%X%X00%X%X", $k, $k ,$k ,$k);
+                    $c = sprintf("#%X%X00%X%X", $k, $k ,$i ,$i);
                     ?>
                     <td style="background-color:<?=$c?>"></td>
                 <?php endfor; ?>
             </tr>
+        <?php endfor; ?>
     </table>
 </body>
 
