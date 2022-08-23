@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單(資料暫存，到15-2回上一步資料還在)</title>
+</head>
+<body>
+    <form name="form1" onsubmit="return false;">
+        <input type="text" name="name" placeholder="please type your name">
+        <br>
+        <input type="number" name="age" placeholder="please type your age">
+        <br>
+        <button type="button" onclick="saveData()">next</button>
+        <!-- 不讓表單回傳所以form的onsubmit="return false;"，按鈕的type="button"(一般的按鈕) -->
+    </form>
+    
+
+    <script>
+
+        // 打這段回上一步資料才會留著
+        const catchData = localStorage.getItem('my-key');
+        if(catchData){
+            const catchObj = JSON.parse(catchData);
+            document.form1.name.value = catchObj.name;
+            document.form1.age.value = catchObj.age;
+        }
+        
+
+        function saveData(){
+            const obj = {
+                name: document.form1.name.value,
+                age: document.form1.age.value,
+            };
+            localStorage.setItem('my-key', JSON.stringify(obj));
+            location.href = "15-2.local storage.html";
+        }
+
+    </script>
+</body>
+</html>
