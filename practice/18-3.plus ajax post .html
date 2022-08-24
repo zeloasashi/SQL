@@ -22,8 +22,9 @@
                 '17-2.api post.php',
                 $(document.form1).serialize(), // payload表單欄位會轉換為 url encoded 字串
                 function(data){
-                    $('#c').html( data );
-                }
+                    $('#c').html( data.result );
+                },
+                'json' // 如果php沒加這句header('Content-type: application/json');才要加'json'
             );
         }
     </script>
