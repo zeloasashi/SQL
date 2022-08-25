@@ -41,6 +41,7 @@
 
                 <?php else: ?>
                     <h2><?= $_SESSION['user1']['nickname']. '您好' ?></h2>
+                    <p><a href="25.logout.php">登出</a></p>
                 <?php endif ?>
 
         </div>
