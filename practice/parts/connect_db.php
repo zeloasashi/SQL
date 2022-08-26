@@ -19,5 +19,9 @@ try{
     echo "Experion". $ex->getMessage();
 }
 
+if(! isset($_SESSION)){
+    session_start();
+}
+// 如果沒有SESSION就執行
 
 ?>

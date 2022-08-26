@@ -1,3 +1,8 @@
+<?php 
+require __DIR__ . '/parts/connect_db.php';
+$pageName = 'home'; //設定頁面名稱
+?>
+
 <?php include __DIR__. '/parts/html_head.php'; ?>
 <?php include __DIR__. '/parts/navbar.php'; ?>
 <div class="container">
