@@ -1,6 +1,7 @@
 <?php 
 require __DIR__ . '/parts/connect_db.php';
 $pageName = 'insert'; //設定頁面名稱
+$title = '新增資料';
 ?>
 
 <?php include __DIR__ . '/parts/html_head.php'; ?>

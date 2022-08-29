@@ -1,8 +1,9 @@
 <?php
 
 require __DIR__ . '/parts/connect_db.php';
-$pageNmae = 'list';
-$perPage = 4; //每頁最多4筆資料
+$pageName = 'list';
+$perPage = 20; //每頁最多4筆資料
+$title = '資料列表';
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 
@@ -35,10 +36,9 @@ if ($totalRows > 0) {
 //     'totalPages' => $totalPages,
 //     'perPage' => $perPage,
 //     'page' => $page,
+//     'rows' => $rows,
 // ]);
 // exit; //資料到這邊就暫時結束，不要套下面的迴圈
-
-
 
 ?>
 
@@ -73,23 +73,31 @@ if ($totalRows > 0) {
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
+                        <th scope="col">刪除</th>
                         <th scope="col">#</th>
                         <th scope="col">姓名</th>
                         <th scope="col">信箱</th>
                         <th scope="col">手機</th>
                         <th scope="col">生日</th>
                         <th scope="col">地址</th>
+                        <th scope="col">編輯</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($rows as $r) : ?>
                         <tr>
+                            <td>
+                                <a href="javascript: removeItem(<?= $r['sid'] ?>)" data-onclick="event.currentTarget.closet('tr').remove"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
                             <td><?= $r['sid'] ?></td>
                             <td><?= $r['name'] ?></td>
                             <td><?= $r['email'] ?></td>
                             <td><?= $r['mobile'] ?></td>
                             <td><?= $r['birthday'] ?></td>
-                            <td><?= $r['address'] ?></td>
+                            <td><?= htmlentities($r['address']) ?></td>
+                            <td>
+                                <a href="data edit.php?sid=<?= $r['sid'] ?>"><i class="fa-solid  fa-pen-to-square"></i></a>
+                            </td>
 
                         </tr>
                     <?php endforeach ?>
@@ -101,5 +109,11 @@ if ($totalRows > 0) {
 </div>
 
 <?php include __DIR__ . '/parts/scripts.php'; ?>
-
+<script>
+    function removeItem(sid){
+        if(confirm(`是否要刪除編號為 ${sid} 的資料?`)){
+            location.href = `data delete.php?sid=${sid}`;
+        }
+    }
+</script>
 <?php include __DIR__ . '/parts/html_foot.php'; ?>
