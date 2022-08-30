@@ -25,7 +25,8 @@
                         <a class="nav-link <?= $pageName == 'list' ? 'active' : '' ?>" href="product list.php">商品列表</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?= $pageName == 'insert' ? 'active' : '' ?>" href="data insert.php">新增</a>
+                        <a class="nav-link <?= $pageName == 'insert' ? 'active' : '' ?>" href="cart.php">購物車<span class="badge text-bg-danger" id="cartCount"></span></a>
+                        
                     </li>
                 </ul>
                 
@@ -50,3 +51,22 @@
         </div>
     </nav>
 </div>
+
+<script>
+    function showCartCount(obj){
+        let count = 0;
+        for(let k in obj){
+            const item = obj[k];
+            count += +item.qty; //為什麼要+ 因為+是轉換字元符號?
+        }
+        $('#cartCount').html(count);
+    }
+
+    $.get(
+        'handle_cart.php',
+        function(data){
+            showCartCount(data);
+        },
+        'json'
+    );
+</script>
